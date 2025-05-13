@@ -1,3 +1,5 @@
+
+
 import streamlit as st
 import base64
 import os
@@ -76,6 +78,9 @@ def display_pdf_from_path(pdf_path):
 if 'show_pdf_invite' not in st.session_state:
     st.session_state.show_pdf_invite = False
 
+if st.query_params.get("action") == "show_invite":
+    st.session_state.show_pdf_invite = True
+
 def botoes_auxiliares():
 
     list_images = []
@@ -126,12 +131,28 @@ if st.session_state.show_pdf_invite:
     botoes_auxiliares()
     if st.button("⬅️ Voltar para o início", use_container_width=True):
         st.session_state.show_pdf_invite = False
+        # Limpa o parâmetro 'action' da URL para um estado limpo
+        if "action" in st.query_params:
+            del st.query_params["action"]
         st.rerun()  
 else:
-    initial_images = []
-    initial_images.append(f"data:image/png;base64,{get_image_as_base64(BUTTON_IMAGE_PATH)}")
+    # # Se show_pdf_invite é False, exibe a imagem clicável (botão)
+    # button_image_base64 = get_image_as_base64(BUTTON_IMAGE_PATH)
+    # if button_image_base64:
+    #     # A imagem é um link que adiciona '?action=show_invite' à URL.
+    #     # target="_self" garante que abra na mesma aba.
+    #     # Se sua imagem não for PNG, ajuste 'data:image/png;base64,' para ex: 'data:image/jpeg;base64,'
+    #     invitation_link_html = f'<a href="?action=show_invite" target="_self"><img src="data:image/png;base64,{button_image_base64}" alt="Clique para ver o convite" style="max-width: 350px; cursor: pointer; display: block; margin-left: auto; margin-right: auto;"></a>'
+    #     st.markdown(invitation_link_html, unsafe_allow_html=True)
+    # elif os.path.exists(BUTTON_IMAGE_PATH): # Imagem existe mas falhou ao carregar/converter
+    #      st.error(f"Não foi possível carregar a imagem do botão '{BUTTON_IMAGE_PATH}'. Verifique o arquivo (idealmente PNG).")
+    # else:
+    #     # Fallback para um botão de texto se a imagem do botão não for encontrada
+    #     st.warning(f"Imagem do botão '{BUTTON_IMAGE_PATH}' não encontrada. Usando um botão de texto padrão como alternativa.")
+    list_images = []
+    list_images.append(f"data:image/png;base64,{get_image_as_base64(BUTTON_IMAGE_PATH)}")
 
-    bt_convite = clickable_images(initial_images,
+    bt_local = clickable_images(list_images,
         div_style={
         "display": "flex", 
         "justify-content": "flex-start", 
@@ -141,21 +162,28 @@ else:
         "width": "100%" 
     },
     img_style={ 
-        "margin": "0%", 
+        "margin": "1.5%", 
         "height": "auto", 
-        "max-width": "1000%", 
+        "max-width": "30%", 
         "object-fit": "contain", 
         "cursor": "pointer",
         "background-color": "transparent"
     },
-    key="clickable_inline_imagess"
+    key="clickable_inline_images"
     
     )
 
-    if bt_convite > -1:
+    if bt_local > -1:
         st.session_state.show_pdf_invite = True
+        # Define o parâmetro da URL para consistência, embora o rerun já use o session_state
+        st.query_params["action"] = "show_invite"
         st.rerun()
-
+    else:
+        if st.button("💌 Abrir Convite"):
+            st.session_state.show_pdf_invite = True
+            # Define o parâmetro da URL para consistência, embora o rerun já use o session_state
+            st.query_params["action"] = "show_invite"
+            st.rerun()
 
     # Lembrete sobre o PDF se o arquivo estiver faltando na visualização inicial
     if not os.path.exists(PDF_PATH):
