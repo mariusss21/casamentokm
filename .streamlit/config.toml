@@ -4,6 +4,7 @@ base="light"
 [client]
 # Impede que o Streamlit mostre o botão "Deploy" no canto superior direito
 showDeployButton = false
+toolbarMode = "minimal"
 
 [ui]
 # Esconde o menu hambúrguer (☰) no canto superior direito

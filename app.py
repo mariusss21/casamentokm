@@ -38,6 +38,9 @@ def set_background(image_path):
             background-repeat: no-repeat;
             background-attachment: fixed;
         }}
+        #MainMenu {{ visibility: hidden; }} /* Oculta o menu hambúrguer (pode ser redundante se o cabeçalho for oculto) */
+        header[data-testid="stHeader"] {{ visibility: hidden; }} /* Oculta o cabeçalho principal */
+        footer {{ visibility: hidden; }} /* Oculta o rodapé */
         </style>
         """,
         unsafe_allow_html=True
@@ -45,13 +48,6 @@ def set_background(image_path):
 
 # Call the function with your local image
 set_background(BACKGROUND_IMAGE_PATH)
-
-hide_streamlit_style = """
-            <style>
-            footer {visibility: hidden;}
-            </style>
-            """
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 # --- Funções Auxiliares ---
 
