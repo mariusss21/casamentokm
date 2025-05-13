@@ -113,7 +113,7 @@ def botoes_auxiliares():
 # 1. Exibir Logo
 if os.path.exists(LOGO_PATH):
     c1, c2, c3 = st.columns(3)
-    c1.write("     ")
+    c1.write("                       ")
     c2.image(LOGO_PATH, width=200)
     c3.write("     ")
 
