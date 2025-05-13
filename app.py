@@ -60,10 +60,11 @@ def get_image_as_base64(path):
         st.error(f"Erro ao ler a imagem {path}: {e}")
         return None
 
-def display_pdf_from_path(pdf_path, width="100%", height="800px"):
+def display_pdf_from_path(pdf_path):
     """Exibe um arquivo PDF embutido no aplicativo Streamlit."""
     if os.path.exists(pdf_path):
-        pdf_viewer(input=pdf_path, width=700)
+        pdf_viewer(input=pdf_path,
+                   pages_vertical_spacing=0)
 
 
 # --- Inicialização do Estado da Sessão ---
