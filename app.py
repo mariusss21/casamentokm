@@ -113,10 +113,10 @@ def botoes_auxiliares():
 # 1. Exibir Logo
 if os.path.exists(LOGO_PATH):
     c1, c2, c3 = st.columns(3)
-    c1.write("")
-    c2.image(LOGO_PATH, width=150)
-    c3.write("")
-    
+    c1.write("     ")
+    c2.image(LOGO_PATH, width=200)
+    c3.write("     ")
+
 else:
     st.warning(f"Imagem do logo '{LOGO_PATH}' não encontrada. Adicione-a ao diretório do aplicativo ou corrija o caminho no código.")
 
