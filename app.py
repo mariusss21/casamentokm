@@ -112,10 +112,17 @@ def botoes_auxiliares():
 
 # 1. Exibir Logo
 if os.path.exists(LOGO_PATH):
-    c1, c2, c3 = st.columns(3)
-    c1.write("                       ")
-    c2.image(LOGO_PATH, width=200)
-    c3.write("     ")
+    
+    logo64 = get_image_as_base64(LOGO_PATH)
+    if logo64:
+        st.markdown(
+            f"""
+            <div style="text-align: center;">
+                <img src="data:image/png;base64,{logo64}" style="max-width: 10%; height: auto;">
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
 else:
     st.warning(f"Imagem do logo '{LOGO_PATH}' não encontrada. Adicione-a ao diretório do aplicativo ou corrija o caminho no código.")
