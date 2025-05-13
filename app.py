@@ -118,7 +118,7 @@ if os.path.exists(LOGO_PATH):
             st.markdown(
                 f"""
                 <div style="text-align: center;">
-                <img src="data:image/png;base64,{logo64}" style="max-width: 30%; height: auto;">
+                <img src="data:image/png;base64,{logo64}" style="max-width: 40%; height: auto;">
             </div>
             """,
             unsafe_allow_html=True
