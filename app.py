@@ -149,6 +149,14 @@ else:
 # 2. Exibir conteúdo com base no estado (mostrar PDF ou mostrar imagem-botão)
 if st.session_state.show_pdf_invite:
     # Se show_pdf_invite é True, exibe o PDF
+    caminho_audio = "musica.mp3"
+    try:
+        audio_file = open(caminho_audio, 'rb')
+        audio_bytes = audio_file.read()
+        st.audio(audio_bytes, format='audio/mp3', autoplay=True) # Ajuste o formato se for .wav, .ogg, etc.
+    except FileNotFoundError:
+        st.error(f"Arquivo de áudio '{caminho_audio}' não encontrado.")
+    
     display_pdf_from_path(PDF_PATH)
     botoes_auxiliares()
     if st.button("⬅️ Voltar para o início", use_container_width=True):
