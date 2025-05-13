@@ -112,13 +112,13 @@ def botoes_auxiliares():
 
 # 1. Exibir Logo
 if os.path.exists(LOGO_PATH):
-    
-    logo64 = get_image_as_base64(LOGO_PATH)
-    if logo64:
-        st.markdown(
-            f"""
-            <div style="text-align: center;">
-                <img src="data:image/png;base64,{logo64}" style="max-width: 20%; height: auto;">
+    if not st.session_state.show_pdf_invite:
+        logo64 = get_image_as_base64(LOGO_PATH)
+        if logo64:
+            st.markdown(
+                f"""
+                <div style="text-align: center;">
+                <img src="data:image/png;base64,{logo64}" style="max-width: 30%; height: auto;">
             </div>
             """,
             unsafe_allow_html=True
