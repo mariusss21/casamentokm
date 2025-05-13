@@ -64,7 +64,8 @@ def display_pdf_from_path(pdf_path):
     """Exibe um arquivo PDF embutido no aplicativo Streamlit."""
     if os.path.exists(pdf_path):
         pdf_viewer(input=pdf_path,
-                   pages_vertical_spacing=0)
+                   pages_vertical_spacing=0,
+                   annotation_outline_size=0)
 
 
 # --- Inicialização do Estado da Sessão ---
