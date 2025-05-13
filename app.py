@@ -18,7 +18,8 @@ LOGO_PATH = "logo_sem_fundo.png"  # Caminho para sua imagem de logo
 BUTTON_IMAGE_PATH = "bt_pdf.png"  # Caminho para a imagem que será o botão (preferencialmente PNG)
 PDF_PATH = "convite.pdf"  # Caminho para o arquivo PDF do convite
 BACKGROUND_IMAGE_PATH = "fundo.jpg" # Caminho para sua imagem de fundo (JPG)
-
+FRANS_POST = 'https://www.google.com/maps/place/Edf.+Frans+Post/@-8.0547412,-34.9077444,17z/data=!3m1!4b1!4m6!3m5!1s0x7ab193c0122aac1:0x184bdf19df7e407f!8m2!3d-8.0547465!4d-34.9051695!16s%2Fg%2F11h6l24c7_?entry=ttu&g_ep=EgoyMDI1MDUxMS4wIKXMDSoASAFQAw%3D%3D'
+SITE = 'https://sites.icasei.com.br/katyaemario/home'
 
 # Function to encode image to base64
 def get_base64_image(image_path):
@@ -83,7 +84,7 @@ def botoes_auxiliares():
     list_images.append(f"data:image/png;base64,{get_image_as_base64('bt_site.png')}")
     list_images.append(f"data:image/png;base64,{get_image_as_base64('bt_pix.png')}")
 
-    bt_local = clickable_images(list_images,
+    botoes = clickable_images(list_images,
         div_style={
         "display": "flex", 
         "justify-content": "flex-start", 
@@ -101,12 +102,28 @@ def botoes_auxiliares():
         "background-color": "transparent"
     },
     key="clickable_inline_images"
-    
     )
 
-    if bt_local > -1:
-        st.write(bt_local)
-        
+    if botoes == 0:
+        st.markdown(f"""
+        <a href="{FRANS_POST}" target="_blank">
+            <img src="data:image/png;base64,{get_image_as_base64('mapa.png')}" alt="Mapa">
+        </a>
+        """, unsafe_allow_html=True)
+        st.write('**Endereço:** Rua Demócrito de Souza Filho 370, Madalena, Recife-PE. Edf Frans Post.')
+    elif botoes == 1:
+        st.markdown(f"""
+        <a href="{SITE}" target="_blank">
+            <img src="data:image/png;base64,{get_image_as_base64('site.png')}" alt="Site">
+        </a>
+        """, unsafe_allow_html=True)
+        st.write(f'**Site:** {SITE}')
+    elif botoes == 2:
+        st.markdown(f"""
+            <img src="data:image/png;base64,{get_image_as_base64('chave_pix.png')}" alt="PIX">
+        """, unsafe_allow_html=True)
+        st.write('**Chave PIX:** marius.lisboa@gmail.com') 
+
 
 # --- Interface Principal do Aplicativo ---
 
