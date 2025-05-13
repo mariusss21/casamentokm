@@ -143,7 +143,7 @@ else:
     img_style={ 
         "margin": "0%", 
         "height": "auto", 
-        "max-width": "1000%", 
+        "max-width": "100%", 
         "object-fit": "contain", 
         "cursor": "pointer",
         "background-color": "transparent"
