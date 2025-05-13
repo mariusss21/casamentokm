@@ -163,7 +163,7 @@ if st.session_state.show_pdf_invite:
     # Se show_pdf_invite é True, exibe o PDF
     display_pdf_from_path(PDF_PATH)
     botoes_auxiliares()
-    if st.button("⬅️ Voltar para o início"):
+    if st.button("⬅️ Voltar para o início", use_container_width=True):
         st.session_state.show_pdf_invite = False
         # Limpa o parâmetro 'action' da URL para um estado limpo
         if "action" in st.query_params:
