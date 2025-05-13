@@ -123,6 +123,7 @@ def botoes_auxiliares():
                              # O container <a> é um flex item e irá encolher/crescer conforme necessário.
         "object-fit": "contain", # Garante que a imagem inteira seja visível, mantendo a proporção
         "cursor": "pointer",
+        "background-color": "transparent"
         # Para controlar o tamanho relativo das imagens na linha, você poderia tentar
         # dar a cada <a> (flex item) um flex-basis ou width percentual,
         # mas st-clickable-images não expõe diretamente o estilo do <a>.
