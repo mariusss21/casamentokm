@@ -121,13 +121,13 @@ if os.path.exists(LOGO_PATH):
                 <img src="data:image/png;base64,{logo64}" style="max-width: 40%; height: auto;">
             </div>
             """,
-            unsafe_allow_html=True
-        )
-
+            unsafe_allow_html=True)
+            st.write("---")  # Separador visual
+    
 else:
     st.warning(f"Imagem do logo '{LOGO_PATH}' não encontrada. Adicione-a ao diretório do aplicativo ou corrija o caminho no código.")
 
-st.write("---")  # Separador visual
+
 
 # 2. Exibir conteúdo com base no estado (mostrar PDF ou mostrar imagem-botão)
 if st.session_state.show_pdf_invite:
