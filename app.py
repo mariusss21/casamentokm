@@ -46,6 +46,13 @@ def set_background(image_path):
 # Call the function with your local image
 set_background(BACKGROUND_IMAGE_PATH)
 
+hide_streamlit_style = """
+            <style>
+            footer {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
 # --- Funções Auxiliares ---
 
 def get_image_as_base64(path):
@@ -110,44 +117,25 @@ def botoes_auxiliares():
     list_images.append(f"data:image/png;base64,{get_image_as_base64('bt_pix.png')}")
 
     bt_local = clickable_images(list_images,
-        div_style={ # Estilo do container principal que segura todas as imagens
-        "display": "flex", # Organiza as imagens em uma linha
-        "justify-content": "flex-start", # Alinha as imagens ao início do container
-        "align-items": "flex-start", # Alinha as imagens ao topo (útil se tiverem alturas diferentes após o aspect ratio)
-        "flex-wrap": "nowrap", # Garante que as imagens fiquem em uma única linha (padrão já é nowrap)
-        "overflow-x": "auto", # Adiciona scroll horizontal se as imagens ainda forem muito largas (opcional)
-        "width": "100%" # Faz o container usar a largura total disponível
+        div_style={
+        "display": "flex", 
+        "justify-content": "flex-start", 
+        "align-items": "flex-start", 
+        "flex-wrap": "nowrap", 
+        "overflow-x": "auto", 
+        "width": "100%" 
     },
-    img_style={ # Estilo aplicado a cada tag <img> individualmente
-        "margin": "1.5%", # Espaçamento entre as imagens
-        "height": "auto", # ESSENCIAL para manter a proporção da imagem
-        "max-width": "30%", # ESSENCIAL: a imagem não excederá a largura de seu container <a>
-                             # O container <a> é um flex item e irá encolher/crescer conforme necessário.
-        "object-fit": "contain", # Garante que a imagem inteira seja visível, mantendo a proporção
+    img_style={ 
+        "margin": "1.5%", 
+        "height": "auto", 
+        "max-width": "30%", 
+        "object-fit": "contain", 
         "cursor": "pointer",
         "background-color": "transparent"
-        # Para controlar o tamanho relativo das imagens na linha, você poderia tentar
-        # dar a cada <a> (flex item) um flex-basis ou width percentual,
-        # mas st-clickable-images não expõe diretamente o estilo do <a>.
-        # No entanto, o comportamento padrão de flexbox com max-width:100% na img
-        # e height:auto deve distribuir o espaço e encolher as imagens proporcionalmente.
-        # Se você quiser que cada imagem ocupe, por exemplo, no máximo 150px de altura:
-        # "max-height": "150px", # A largura se ajustaria automaticamente devido ao height:auto
     },
-    key="clickable_inline_images" # Adicionar uma chave é bom se você tiver múltiplos clickable_images
+    key="clickable_inline_images"
     
     )
-    # html = f"<a href='?action=local'><img src='data:image/png;base64,{local_image}'></a>"
-    # c1.markdown(html, unsafe_allow_html=True)    
-
-    # site_image = get_image_as_base64('bt_site.png')
-    # html = f"<a href='?action=site'><img src='data:image/png;base64,{site_image}'></a>"
-    # c2.markdown(html, unsafe_allow_html=True) 
-
-    # pix_image = get_image_as_base64('bt_pix.png')
-    # html = f"<a href='?action=pix'><img src='data:image/png;base64,{pix_image}'></a>"
-    # c3.markdown(html, unsafe_allow_html=True) 1
-
 
 # --- Interface Principal do Aplicativo ---
 
